@@ -1,0 +1,254 @@
+:root {
+  --mx: 0;
+  --my: 0;
+  --spot-x: 58%;
+  --spot-y: 45%;
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  color: #f8fbff;
+  background: #020202;
+}
+
+.showcase {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: clamp(1.25rem, 4vw, 4rem);
+  isolation: isolate;
+  perspective: 1400px;
+  overflow: hidden;
+}
+
+.showcase::before {
+  position: absolute;
+  inset: 0;
+  z-index: -4;
+  content: "";
+  background:
+    radial-gradient(circle at var(--spot-x) var(--spot-y), rgba(255, 255, 255, 0.2), transparent 24rem),
+    radial-gradient(circle at 15% 85%, rgba(110, 126, 148, 0.22), transparent 24rem),
+    linear-gradient(115deg, #010101 0%, #090909 48%, #000 100%);
+}
+
+.showcase::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.22) 42%, rgba(0, 0, 0, 0.62)),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.9));
+  pointer-events: none;
+}
+
+.background-scene {
+  position: absolute;
+  inset: -12vh -12vw;
+  z-index: -3;
+  transform-style: preserve-3d;
+  transform: rotateX(calc(var(--my) * -8deg)) rotateY(calc(var(--mx) * 12deg)) translateZ(-90px);
+  transition: transform 120ms ease-out;
+}
+
+.background-layer,
+.background-glow,
+.background-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform, opacity, filter, background-position;
+}
+
+.background-layer {
+  background-image: url("get.jfif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.layer-far {
+  opacity: 0.38;
+  filter: grayscale(1) blur(7px) brightness(0.72) contrast(1.2);
+  transform: translate3d(calc(var(--mx) * -1.2rem), calc(var(--my) * -0.8rem), -300px) scale(1.34);
+  animation: far-drift 18s ease-in-out infinite alternate;
+}
+
+.layer-mid {
+  opacity: 0.7;
+  filter: grayscale(1) brightness(0.86) contrast(1.18) drop-shadow(0 3rem 5rem rgba(0, 0, 0, 0.9));
+  transform: translate3d(calc(var(--mx) * 1.35rem), calc(var(--my) * 0.9rem), -80px) scale(1.12);
+  animation: mid-float 10s ease-in-out infinite;
+}
+
+.layer-near {
+  opacity: 0.42;
+  mix-blend-mode: screen;
+  filter: grayscale(1) brightness(1.45) contrast(1.35) blur(0.5px);
+  transform: translate3d(calc(var(--mx) * 2.6rem), calc(var(--my) * 1.8rem), 140px) scale(1.02);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 24%, #000 82%, transparent 100%);
+  animation: near-breathe 7s ease-in-out infinite;
+}
+
+.background-glow {
+  z-index: 2;
+  background:
+    radial-gradient(ellipse at var(--spot-x) var(--spot-y), rgba(255, 255, 255, 0.22), transparent 21rem),
+    radial-gradient(ellipse at 46% 52%, rgba(85, 91, 104, 0.32), transparent 42rem);
+  filter: blur(30px);
+  mix-blend-mode: screen;
+  opacity: 0.72;
+  transform: translateZ(190px);
+  animation: glow-pulse 8s ease-in-out infinite;
+}
+
+.background-sheen {
+  z-index: 3;
+  background: linear-gradient(105deg, transparent 34%, rgba(255, 255, 255, 0.02) 43%, rgba(255, 255, 255, 0.36) 49%, rgba(255, 255, 255, 0.02) 56%, transparent 68%);
+  filter: blur(12px);
+  mix-blend-mode: screen;
+  opacity: 0.48;
+  transform: translateZ(240px) rotate(2deg);
+  animation: sheen-pass 5.4s ease-in-out infinite;
+}
+
+.content-card {
+  width: min(39rem, 92vw);
+  padding: clamp(1.4rem, 3vw, 2.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 1.6rem;
+  background: linear-gradient(145deg, rgba(3, 3, 5, 0.68), rgba(3, 3, 5, 0.24));
+  box-shadow: 0 2rem 7rem rgba(0, 0, 0, 0.66), inset 0 1px 0 rgba(255, 255, 255, 0.13);
+  text-align: center;
+  backdrop-filter: blur(16px);
+  transform: translateZ(180px) rotateX(calc(var(--my) * -2deg)) rotateY(calc(var(--mx) * 3deg));
+}
+
+.eyebrow {
+  margin: 0 0 0.85rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #d7dee7;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+h1,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  font-size: clamp(3.1rem, 8vw, 7rem);
+  line-height: 0.86;
+  letter-spacing: -0.085em;
+  text-wrap: balance;
+}
+
+p {
+  margin-bottom: 0;
+  color: rgba(248, 251, 255, 0.76);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.7;
+}
+
+@keyframes far-drift {
+  from {
+    transform: translate3d(-2rem, -1rem, -300px) scale(1.34) rotateZ(-1deg);
+  }
+
+  to {
+    transform: translate3d(2rem, 1rem, -300px) scale(1.4) rotateZ(1deg);
+  }
+}
+
+@keyframes mid-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -1.15rem;
+  }
+}
+
+@keyframes near-breathe {
+  0%,
+  100% {
+    opacity: 0.32;
+    scale: 0.99;
+  }
+
+  50% {
+    opacity: 0.5;
+    scale: 1.04;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.52;
+    scale: 0.96;
+  }
+
+  50% {
+    opacity: 0.82;
+    scale: 1.04;
+  }
+}
+
+@keyframes sheen-pass {
+  0% {
+    translate: -42vw 0;
+    opacity: 0;
+  }
+
+  45%,
+  58% {
+    opacity: 0.5;
+  }
+
+  100% {
+    translate: 42vw 0;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .background-scene {
+    inset: -6vh -38vw;
+  }
+
+  .background-layer {
+    background-size: contain;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .background-scene,
+  .background-layer,
+  .background-glow,
+  .background-sheen,
+  .content-card {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}
