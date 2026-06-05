@@ -3,33 +3,41 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>3D Animated Background Test</title>
+    <title>3D Animated Image Background</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="hero" aria-label="Animated 3D image background test site">
-      <div class="scene" aria-hidden="true">
-        <div class="bg-layer layer-back"></div>
-        <div class="bg-layer layer-mid"></div>
-        <div class="bg-layer layer-front"></div>
+    <main class="showcase" aria-label="3D animated background demo using the uploaded image">
+      <div class="visual-stage" aria-hidden="true">
+        <div class="halo"></div>
+        <div class="depth-stack">
+          <span class="image-ghost ghost-one"></span>
+          <span class="image-ghost ghost-two"></span>
+          <span class="image-ghost ghost-three"></span>
+          <div class="image-plane"></div>
+          <div class="sheen"></div>
+        </div>
+        <div class="light-sweep"></div>
       </div>
 
-      <section class="hero-card">
-        <p class="eyebrow">Test site</p>
-        <h1>Animated 3D Background</h1>
+      <section class="content-card">
+        <p class="eyebrow">3D background test</p>
+        <h1>Black glass in motion.</h1>
         <p>
-          Your uploaded image is the full-screen backdrop, split into layered panels
-          that float, tilt, and react to your cursor for a 3D parallax feel.
+          The uploaded image stays clean and visible, while layered copies behind it
+          drift through space to create a deep animated parallax effect.
         </p>
-        <a class="button" href="#preview">Explore the effect</a>
+        <a class="button" href="#details">See the setup</a>
       </section>
     </main>
 
-    <section class="preview" id="preview">
-      <h2>Built for motion</h2>
+    <section class="details" id="details">
+      <p class="eyebrow">How it works</p>
+      <h2>Image-first, not clutter-first.</h2>
       <p>
-        Move your mouse or tilt your device to make the background shift in depth.
-        The animation also runs on its own so the page still feels alive when idle.
+        The main image uses <code>background-size: contain</code> so the sculptural
+        shape is not cropped. Cursor movement and phone tilt rotate the entire 3D
+        stack, while slow CSS animations add floating depth and a metallic light pass.
       </p>
     </section>
 
