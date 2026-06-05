@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3D Animated Background Test</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="hero" aria-label="Animated 3D image background test site">
+      <div class="scene" aria-hidden="true">
+        <div class="bg-layer layer-back"></div>
+        <div class="bg-layer layer-mid"></div>
+        <div class="bg-layer layer-front"></div>
+      </div>
+
+      <section class="hero-card">
+        <p class="eyebrow">Test site</p>
+        <h1>Animated 3D Background</h1>
+        <p>
+          Your uploaded image is the full-screen backdrop, split into layered panels
+          that float, tilt, and react to your cursor for a 3D parallax feel.
+        </p>
+        <a class="button" href="#preview">Explore the effect</a>
+      </section>
+    </main>
+
+    <section class="preview" id="preview">
+      <h2>Built for motion</h2>
+      <p>
+        Move your mouse or tilt your device to make the background shift in depth.
+        The animation also runs on its own so the page still feels alive when idle.
+      </p>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
